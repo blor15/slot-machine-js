@@ -29,5 +29,20 @@ const getNumberOfLines = () => {
   }
 };
 
-const depositAmount = deposit();
+// Determine a user's bet amount from their balance per line
+const getBet = (balance, lines) => {
+  while (true) {
+    const bet = prompt("Enter the bet per line: ");
+    const numberBet = parseFloat(bet);
+
+    if (isNaN(numberBet) || numberBet <= 0 || numberBet > balance / lines) {
+      console.log("Invalid bet, try again");
+    } else {
+      return numberBet;
+    }
+  }
+};
+
+let balance = deposit();
 const numberofLines = getNumberOfLines();
+const bet = getBet(balance, numberofLines);
